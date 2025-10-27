@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Lines that begin with #SBATCH specify commands to be used by SLURM for scheduling
+#SBATCH --job-name=PDSGD     # sets the job name if not set from environment
+#SBATCH --time=05:30:00     # how long you think your job will take to complete; format=hh:mm:ss
+#SBATCH --account=scavenger   # set QOS, this will determine what resources can be requested
+#SBATCH --qos=scavenger  # set QOS, this will determine what resources can be requested
+#SBATCH --partition=scavenger
+#SBATCH --gres=gpu:3
+#SBATCH --ntasks=10
+#SBATCH --mem 64gb         # memory required by job; if unit is not specified MB will be assumed
+#SBATCH --nice=0
+#SBATCH --mail-type=END   # Valid type values are NONE, BEGIN, END, FAIL, REQUEUE
+
+module load openmpi 
+module load cuda/11.1.1
+
+
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test1-16C-SDPS-cifar100-cnn-alpha0.5 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 2828 --dataset cifar100 --alpha 0.5 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test2-16C-SDPS-cifar100-cnn-alpha0.5 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 3789 --dataset cifar100 --alpha 0.5 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test3-16C-SDPS-cifar100-cnn-alpha0.5 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 99 --dataset cifar100 --alpha 0.5 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test4-16C-SDPS-cifar100-cnn-alpha0.5 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 122 --dataset cifar100 --alpha 0.5 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test5-16C-SDPS-cifar100-cnn-alpha0.5 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 37 --dataset cifar100 --alpha 0.5 --KD 1 --outputFolder Output
+
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test1-16C-SDPS-cifar100-cnn-alpha1 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 2828 --dataset cifar100 --alpha 1 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test2-16C-SDPS-cifar100-cnn-alpha1 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 3789 --dataset cifar100 --alpha 1 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test3-16C-SDPS-cifar100-cnn-alpha1 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 99 --dataset cifar100 --alpha 1 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test4-16C-SDPS-cifar100-cnn-alpha1 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 122 --dataset cifar100 --alpha 1 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test5-16C-SDPS-cifar100-cnn-alpha1 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 37 --dataset cifar100 --alpha 1 --KD 1 --outputFolder Output
+
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test1-16C-SDPS-cifar100-cnn-alpha2 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 2828 --dataset cifar100 --alpha 2 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test2-16C-SDPS-cifar100-cnn-alpha2 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 3789 --dataset cifar100 --alpha 2 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test3-16C-SDPS-cifar100-cnn-alpha2 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 99 --dataset cifar100 --alpha 2 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test4-16C-SDPS-cifar100-cnn-alpha2 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 122 --dataset cifar100 --alpha 2 --KD 1 --outputFolder Output
+mpirun -np 16 --oversubscribe python Train_pull_logit.py --graph grid --rows 4 --columns 4 --num_clusters 4 --name pdsgd-noniid-test5-16C-SDPS-cifar100-cnn-alpha2 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.01 --customLR 1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_weight --description PDSGD --randomSeed 37 --dataset cifar100 --alpha 2 --KD 1 --outputFolder Output
+
+
+
+
+#mpirun -np 16 --oversubscribe python Train_pull.py  --graph grid --rows 4 --columns 4 --num_clusters 3 --name pdsgd-noniid-test2-16W-feature-layer1 --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_features --description PDSGD --randomSeed 3789 --dataset cifar10  --outputFolder Output
+#mpirun -np 16 --oversubscribe python Train_pull.py  --graph grid --rows 4 --columns 4 --num_clusters 3 --name pdsgd-noniid-test3-16W-feature --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_features --description PDSGD --randomSeed 99 --dataset cifar10  --outputFolder Output
+#mpirun -np 16 --oversubscribe python Train_pull.py  --graph grid --rows 4 --columns 4 --num_clusters 3 --name pdsgd-noniid-test4-16W-feature --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_features --description PDSGD --randomSeed 122 --dataset cifar10  --outputFolder Output
+#mpirun -np 16 --oversubscribe python Train_pull.py  --graph grid --rows 4 --columns 4 --num_clusters 3 --name pdsgd-noniid-test5-16W-feature --comm_style pd-sgd-selection --momentum 0.9 --i1 4 --i2 1 --lr 0.1 --degree_noniid 0.9 --noniid 1 --resSize 18 --bs 32 --epoch 2000 --selection bnz --utility_metric cosine_similarity_features --description PDSGD --randomSeed 37 --dataset cifar10  --outputFolder Output
+
+
+
+#mpirun -np 30 --oversubscribe python Train.py  --graph fully-connected --rows 6 --columns 5 --num_clusters 3 --name pdsgd-noniid-test2-30W --comm_style pd-sgd-selection --momentum 0.9 --i1 1 --i2 1 --lr 0.1 --degree_noniid 1 --noniid 1 --resSize 18 --bs 32 --epoch 300 --selection bnz --utility_metric euclidweight_difference --description PDSGD --randomSeed 3789 --dataset cifar10  --outputFolder Output
+#mpirun -np 30 --oversubscribe python Train.py  --graph fully-connected --rows 6 --columns 5 --num_clusters 3 --name pdsgd-noniid-test3-30W --comm_style pd-sgd-selection --momentum 0.9 --i1 1 --i2 1 --lr 0.1 --degree_noniid 1 --noniid 1 --resSize 18 --bs 32 --epoch 300 --selection bnz --utility_metric euclidweight_difference --description PDSGD --randomSeed 99 --dataset cifar10  --outputFolder Output
+#mpirun -np 30 --oversubscribe python Train.py  --graph fully-connected --rows 6 --columns 5 --num_clusters 3 --name pdsgd-noniid-test4-30W --comm_style pd-sgd-selection --momentum 0.9 --i1 1 --i2 1 --lr 0.1 --degree_noniid 1 --noniid 1 --resSize 18 --bs 32 --epoch 300 --selection bnz --utility_metric euclidweight_difference --description PDSGD --randomSeed 122 --dataset cifar10  --outputFolder Output
+#mpirun -np 30 --oversubscribe python Train.py  --graph fully-connected --rows 6 --columns 5 --num_clusters 3 --name pdsgd-noniid-test5-30W --comm_style pd-sgd-selection --momentum 0.9 --i1 1 --i2 1 --lr 0.1 --degree_noniid 1 --noniid 1 --resSize 18 --bs 32 --epoch 300 --selection bnz --utility_metric euclidweight_difference --description PDSGD --randomSeed 37 --dataset cifar10  --outputFolder Output
+
+#--customLR 1
+
+
+
+#rounds_weight_difference_similarity
